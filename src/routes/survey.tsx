@@ -36,20 +36,23 @@ function SurveyPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    try {
-      const response = await fetch('/api/survey', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-      if (response.ok) {
-        setSubmitted(true);
-      }
-    } catch (error) {
-      console.error('Survey submission error:', error);
-    } finally {
-      setLoading(false);
+    const { error } = await supabase.from('guest_surveys').insert({
+      name: formData.name,
+      email: formData.email,
+      menu_selection: formData.menuSelection || null,
+      food_quality: formData.foodQuality || null,
+      order_quickness: formData.orderQuickness || null,
+      staff_rating: formData.staffRating || null,
+      portion_size: formData.portionSize || null,
+      pricing_value: formData.pricingValue || null,
+      comments: formData.comments || null,
+    });
+    setLoading(false);
+    if (error) {
+      toast.error('Could not submit survey. Please try again.');
+      return;
     }
+    setSubmitted(true);
   };
 
   if (submitted) {
