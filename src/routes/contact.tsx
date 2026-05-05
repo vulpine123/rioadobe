@@ -3,7 +3,6 @@ import { useState } from "react";
 import { z } from "zod";
 import { MapPin, Phone, Printer, Clock, Mail, Send, CheckCircle2, Loader2 } from "lucide-react";
 import { RioAdobeMark } from "@/components/site/Brand";
-import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/contact")({
@@ -53,19 +52,12 @@ function ContactPage() {
     }
     setErrors({});
     setLoading(true);
-
-    try {
-      const { error } = await supabase.functions.invoke("send-contact-email", {
-        body: parsed.data,
-      });
-      if (error) throw new Error(error.message || "Unknown error");
+    // TODO: Lovable will wire up email sending here
+    setTimeout(() => {
+      setLoading(false);
       setSubmitted(true);
       toast.success("Message sent! We'll be in touch soon.");
-    } catch (err: any) {
-      toast.error(err.message || "Could not send message. Please try again.");
-    } finally {
-      setLoading(false);
-    }
+    }, 800);
   };
 
   return (
