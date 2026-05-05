@@ -3,6 +3,8 @@ import { useState } from "react";
 import { z } from "zod";
 import { MapPin, Phone, Printer, Clock, Mail, Send, CheckCircle2 } from "lucide-react";
 import { RioAdobeMark } from "@/components/site/Brand";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -33,9 +35,10 @@ type ContactErrors = Partial<Record<keyof z.infer<typeof contactSchema>, string>
 
 function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<ContactErrors>({});
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.currentTarget).entries());
     const parsed = contactSchema.safeParse(data);
@@ -49,6 +52,18 @@ function ContactPage() {
       return;
     }
     setErrors({});
+    setLoading(true);
+    const { error } = await supabase.from("contact_messages").insert({
+      name: parsed.data.name,
+      email: parsed.data.email,
+      phone: parsed.data.phone || null,
+      message: parsed.data.message,
+    });
+    setLoading(false);
+    if (error) {
+      toast.error("Could not send message. Please try again.");
+      return;
+    }
     setSubmitted(true);
   };
 
@@ -117,9 +132,10 @@ function ContactPage() {
               </div>
               <button
                 type="submit"
-                className="w-full bg-primary text-on-primary rounded-full py-4 text-xs font-bold uppercase tracking-[0.25em] hover:opacity-90 transition flex items-center justify-center gap-2"
+                disabled={loading}
+                className="w-full bg-primary text-on-primary rounded-full py-4 text-xs font-bold uppercase tracking-[0.25em] hover:opacity-90 transition flex items-center justify-center gap-2 disabled:opacity-60"
               >
-                <Send size={14} /> Send Message
+                <Send size={14} /> {loading ? "Sending…" : "Send Message"}
               </button>
               <p className="text-[10px] text-on-surface-variant text-center mt-2">
                 Your information stays private. We never share or sell guest details.

@@ -4,6 +4,7 @@ import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { MobileNav } from "@/components/site/MobileNav";
 import { CodestartersBadge } from "@/components/CodestartersBadge";
+import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -63,6 +64,7 @@ function RootComponent() {
       <Footer />
       <MobileNav />
       <CodestartersBadge />
+      <Toaster richColors position="top-center" />
     </div>
   );
 }

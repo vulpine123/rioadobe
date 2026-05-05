@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { MapPin, Phone, Clock, Instagram, Facebook } from "lucide-react";
 import { RioAdobeMark } from "./Brand";
+import { NewsletterForm } from "./NewsletterForm";
 
 export function Footer() {
   return (
@@ -52,6 +53,9 @@ export function Footer() {
             <div className="flex flex-col gap-3">
               <a href="tel:4088731600" className="bg-primary text-on-primary text-center py-3 rounded-full font-body text-xs font-bold uppercase tracking-widest hover:opacity-90 transition">Call for Take-Out</a>
               <a href="https://www.rioadobe.com/Rio_Adobe_Menu.pdf" target="_blank" rel="noopener noreferrer" className="text-white/55 hover:text-primary text-center font-body text-xs uppercase tracking-widest pt-2">Download Menu PDF</a>
+            </div>
+            <div className="mt-6">
+              <NewsletterForm />
             </div>
           </div>
         </div>
