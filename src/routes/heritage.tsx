@@ -3,7 +3,8 @@ import { motion } from "motion/react";
 const enchiladaImg = "https://rioadobe.com/IMG_1968.JPG";
 const salsaImg = "https://rioadobe.com/publishImages/Appetizers~~element26.jpg";
 const tacosImg = "https://rioadobe.com/publishImages/Appetizers~~element21.jpg";
-const heroImg = "https://rioadobe.com/Rio_Adobe_Southwest_Cafe_Sign.jpg";
+// Restaurant dining / service — warm Southwest interior
+const heroImg = "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=90&w=1600";
 
 
 

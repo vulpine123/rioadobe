@@ -2,18 +2,18 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { Star, MapPin, Clock, Phone, ChevronRight, Utensils, Flame, Leaf, Award, Heart, Sparkles } from "lucide-react";
-// Hero: Rio Adobe restaurant exterior sign — official photo
-const heroImg = "https://rioadobe.com/Rio_Adobe_Southwest_Cafe_Sign.jpg";
+// Hero: vibrant Southwest restaurant/cantina interior
+const heroImg = "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=90&w=2400";
 // Food highlights from Rio Adobe's own site
 const tacosImg = "https://rioadobe.com/publishImages/Appetizers~~element21.jpg";
 const enchiladaImg = "https://rioadobe.com/IMG_1968.JPG";
 const salsaImg = "https://rioadobe.com/publishImages/Appetizers~~element26.jpg";
-// Margarita — high quality Unsplash
-const margaritaImg = "https://images.unsplash.com/photo-1601924357840-3e50ad4dd9b7?auto=format&fit=crop&q=85&w=1600";
-// Kitchen / chef — high quality Unsplash
-const chefImg = "https://images.unsplash.com/photo-1721322800607-8c38375eef04?auto=format&fit=crop&q=85&w=1600";
-// Southwest spice/adobe landscape — high quality Unsplash
-const spicesImg = "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=85&w=2400";
+// Margarita — colorful cocktails on bar top
+const margaritaImg = "https://images.unsplash.com/photo-1618183479302-1e0aa382c36b?auto=format&fit=crop&q=90&w=1600";
+// Kitchen — chef plating Mexican food
+const chefImg = "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&q=90&w=1600";
+// Southwest / New Mexico landscape with warm adobe tones
+const spicesImg = "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&q=90&w=2400";
 
 
 

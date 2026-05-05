@@ -3,7 +3,8 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { MENU, type DietaryTag } from "@/data/menu";
 import { Leaf, WheatOff, Flame, Star, X, Download, Phone } from "lucide-react";
-const heroImg = "https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?auto=format&fit=crop&q=80&w=1920";
+// Menu hero — vibrant Southwestern Mexican food spread
+const heroImg = "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&q=90&w=2400";
 const tacosImg = "https://rioadobe.com/publishImages/Appetizers~~element21.jpg";
 const salsaImg = "https://rioadobe.com/publishImages/Appetizers~~element26.jpg";
 
