@@ -3,6 +3,7 @@ import { useState } from "react";
 import { z } from "zod";
 import { MapPin, Phone, Printer, Clock, Mail, Send, CheckCircle2, Loader2 } from "lucide-react";
 import { RioAdobeMark } from "@/components/site/Brand";
+import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/contact")({
@@ -54,13 +55,10 @@ function ContactPage() {
     setLoading(true);
 
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(parsed.data),
+      const { error } = await supabase.functions.invoke("send-contact-email", {
+        body: parsed.data,
       });
-      const json = await res.json();
-      if (!res.ok) throw new Error(json.error || "Unknown error");
+      if (error) throw new Error(error.message || "Unknown error");
       setSubmitted(true);
       toast.success("Message sent! We'll be in touch soon.");
     } catch (err: any) {
