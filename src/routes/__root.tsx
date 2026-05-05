@@ -64,6 +64,7 @@ function RootComponent() {
       <Footer />
       <MobileNav />
       <CodestartersBadge />
+      <Toaster richColors position="top-center" />
     </div>
   );
 }
