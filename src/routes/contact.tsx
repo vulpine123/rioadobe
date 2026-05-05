@@ -132,9 +132,10 @@ function ContactPage() {
               </div>
               <button
                 type="submit"
-                className="w-full bg-primary text-on-primary rounded-full py-4 text-xs font-bold uppercase tracking-[0.25em] hover:opacity-90 transition flex items-center justify-center gap-2"
+                disabled={loading}
+                className="w-full bg-primary text-on-primary rounded-full py-4 text-xs font-bold uppercase tracking-[0.25em] hover:opacity-90 transition flex items-center justify-center gap-2 disabled:opacity-60"
               >
-                <Send size={14} /> Send Message
+                <Send size={14} /> {loading ? "Sending…" : "Send Message"}
               </button>
               <p className="text-[10px] text-on-surface-variant text-center mt-2">
                 Your information stays private. We never share or sell guest details.
