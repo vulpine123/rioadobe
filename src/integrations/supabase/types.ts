@@ -14,16 +14,129 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      contact_messages: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          message: string
+          name: string
+          phone: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          message: string
+          name: string
+          phone?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string
+          name?: string
+          phone?: string | null
+        }
+        Relationships: []
+      }
+      guest_surveys: {
+        Row: {
+          comments: string | null
+          created_at: string
+          email: string
+          food_quality: string | null
+          id: string
+          menu_selection: string | null
+          name: string
+          order_quickness: string | null
+          portion_size: string | null
+          pricing_value: string | null
+          staff_rating: string | null
+        }
+        Insert: {
+          comments?: string | null
+          created_at?: string
+          email: string
+          food_quality?: string | null
+          id?: string
+          menu_selection?: string | null
+          name: string
+          order_quickness?: string | null
+          portion_size?: string | null
+          pricing_value?: string | null
+          staff_rating?: string | null
+        }
+        Update: {
+          comments?: string | null
+          created_at?: string
+          email?: string
+          food_quality?: string | null
+          id?: string
+          menu_selection?: string | null
+          name?: string
+          order_quickness?: string | null
+          portion_size?: string | null
+          pricing_value?: string | null
+          staff_rating?: string | null
+        }
+        Relationships: []
+      }
+      newsletter_subscribers: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +263,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+    },
   },
 } as const
