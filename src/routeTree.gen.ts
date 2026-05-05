@@ -9,18 +9,11 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SurveyRouteImport } from './routes/survey'
 import { Route as MenuRouteImport } from './routes/menu'
 import { Route as HeritageRouteImport } from './routes/heritage'
 import { Route as ContactRouteImport } from './routes/contact'
-import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 
-const SurveyRoute = SurveyRouteImport.update({
-  id: '/survey',
-  path: '/survey',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const MenuRoute = MenuRouteImport.update({
   id: '/menu',
   path: '/menu',
@@ -36,11 +29,6 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AdminRoute = AdminRouteImport.update({
-  id: '/admin',
-  path: '/admin',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -49,62 +37,40 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/heritage': typeof HeritageRoute
   '/menu': typeof MenuRoute
-  '/survey': typeof SurveyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/heritage': typeof HeritageRoute
   '/menu': typeof MenuRoute
-  '/survey': typeof SurveyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/heritage': typeof HeritageRoute
   '/menu': typeof MenuRoute
-  '/survey': typeof SurveyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/contact' | '/heritage' | '/menu' | '/survey'
+  fullPaths: '/' | '/contact' | '/heritage' | '/menu'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/contact' | '/heritage' | '/menu' | '/survey'
-  id:
-    | '__root__'
-    | '/'
-    | '/admin'
-    | '/contact'
-    | '/heritage'
-    | '/menu'
-    | '/survey'
+  to: '/' | '/contact' | '/heritage' | '/menu'
+  id: '__root__' | '/' | '/contact' | '/heritage' | '/menu'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AdminRoute: typeof AdminRoute
   ContactRoute: typeof ContactRoute
   HeritageRoute: typeof HeritageRoute
   MenuRoute: typeof MenuRoute
-  SurveyRoute: typeof SurveyRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/survey': {
-      id: '/survey'
-      path: '/survey'
-      fullPath: '/survey'
-      preLoaderRoute: typeof SurveyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/menu': {
       id: '/menu'
       path: '/menu'
@@ -126,13 +92,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/admin': {
-      id: '/admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AdminRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -145,12 +104,19 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AdminRoute: AdminRoute,
   ContactRoute: ContactRoute,
   HeritageRoute: HeritageRoute,
   MenuRoute: MenuRoute,
-  SurveyRoute: SurveyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
+}

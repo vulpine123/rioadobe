@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { MapPin, Phone, Clock, Instagram, Facebook } from "lucide-react";
 import { RioAdobeMark } from "./Brand";
-import { NewsletterForm } from "./NewsletterForm";
 
 export function Footer() {
   return (
@@ -33,9 +32,8 @@ export function Footer() {
             <ul className="space-y-3 font-body text-sm">
               <li><Link to="/menu" className="text-white/55 hover:text-primary">Full Menu</Link></li>
               <li><Link to="/heritage" className="text-white/55 hover:text-primary">Heritage</Link></li>
-              <li><Link to="/survey" className="text-white/55 hover:text-primary">Guest Survey</Link></li>
+              <li><Link to="/contact" className="text-white/55 hover:text-primary">Contact</Link></li>
               <li><a href="https://rioadobe.com/Rio_Adobe_Employment_Application.doc" target="_blank" rel="noopener noreferrer" className="text-white/55 hover:text-primary">Job Application</a></li>
-
             </ul>
           </div>
 
@@ -53,9 +51,6 @@ export function Footer() {
             <div className="flex flex-col gap-3">
               <a href="tel:4088731600" className="bg-primary text-on-primary text-center py-3 rounded-full font-body text-xs font-bold uppercase tracking-widest hover:opacity-90 transition">Call for Take-Out</a>
               <a href="https://www.rioadobe.com/Rio_Adobe_Menu.pdf" target="_blank" rel="noopener noreferrer" className="text-white/55 hover:text-primary text-center font-body text-xs uppercase tracking-widest pt-2">Download Menu PDF</a>
-            </div>
-            <div className="mt-6">
-              <NewsletterForm />
             </div>
           </div>
         </div>
