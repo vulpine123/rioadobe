@@ -41,13 +41,14 @@ function AdminPage() {
           // Set some mock data if API fails
           setData({
             contacts: [
-              { name: 'John Doe', email: 'john@example.com', message: 'Love the food!', date: new Date().toISOString() }
+              { name: 'John Doe', email: 'john@example.com', message: 'Love the food!', date: new Date().toISOString(), isSample: true }
             ],
             newsletters: ['guest@example.com'],
             surveys: [
               { name: 'Jane Smith', email: 'jane@example.com', menuSelection: 'Excellent', foodQuality: 'Excellent', orderQuickness: 'Good', staffRating: 'Excellent', portionSize: 'Good', pricingValue: 'Excellent', comments: 'Best burritos in Cupertino!', date: new Date().toISOString() }
             ]
           });
+
         } else {
           setError('Invalid credentials');
         }
@@ -57,6 +58,12 @@ function AdminPage() {
       setError('Login failed');
     }
   };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      fetchData();
+    }
+  }, [isAuthenticated, activeTab]);
 
   const fetchData = async () => {
     try {
@@ -78,8 +85,8 @@ function AdminPage() {
           animate={{ opacity: 1, y: 0 }}
           className="bg-white p-8 md:p-12 rounded-3xl shadow-2xl w-full max-w-md border border-primary/5"
         >
-          <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-8 text-primary">
-            <Lock size={32} />
+          <div className="flex justify-center mb-8">
+            <RioAdobeMark size={64} />
           </div>
           <h1 className="text-3xl font-black text-center text-gray-900 mb-8 uppercase font-headline">Admin Portal</h1>
           <form onSubmit={handleLogin} className="space-y-6">
@@ -123,10 +130,18 @@ function AdminPage() {
           <div className="flex flex-col items-start gap-2">
             <RioAdobeMark size={48} />
             <h1 className="text-4xl font-black text-gray-900 uppercase font-headline">Dashboard</h1>
-            <p className="text-on-surface-variant mt-1 font-medium">Manage your restaurant data</p>
+            <p className="text-on-surface-variant mt-1 font-medium italic text-xs uppercase tracking-widest opacity-50">
+              {data.contacts.length > 0 && data.contacts[0].isSample ? "Viewing Sample Data (Backend disconnected)" : "Real-time Connection Active"}
+            </p>
           </div>
 
           <div className="flex items-center gap-4">
+            <button 
+              onClick={fetchData}
+              className="px-6 py-3 bg-white border border-border rounded-xl font-bold text-primary hover:bg-gray-50 transition-all uppercase text-[10px] tracking-widest"
+            >
+              Refresh Data
+            </button>
             <button 
               onClick={() => setIsAuthenticated(false)}
               className="flex items-center gap-2 px-6 py-3 bg-white border border-border rounded-xl font-bold text-on-surface-variant hover:bg-gray-50 transition-all uppercase text-[10px] tracking-widest"
@@ -136,6 +151,7 @@ function AdminPage() {
             </button>
           </div>
         </div>
+
 
         <div className="flex gap-4 mb-12 overflow-x-auto pb-2 scrollbar-hide">
           {[
