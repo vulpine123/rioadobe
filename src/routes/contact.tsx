@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { z } from "zod";
-import { MapPin, Phone, Printer, Clock, Mail, Send, CheckCircle2 } from "lucide-react";
+import { MapPin, Phone, Printer, Clock, Mail, Send, CheckCircle2, Loader2 } from "lucide-react";
 import { RioAdobeMark } from "@/components/site/Brand";
 import { toast } from "sonner";
 
@@ -16,8 +16,6 @@ export const Route = createFileRoute("/contact")({
   }),
   component: ContactPage,
 });
-
-const OWNER_EMAIL = "medisummarize@gmail.com";
 
 const contactSchema = z.object({
   name: z.string().trim().min(2, "Please enter your name").max(80, "Name must be under 80 characters"),
@@ -36,9 +34,10 @@ type ContactErrors = Partial<Record<keyof z.infer<typeof contactSchema>, string>
 
 function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<ContactErrors>({});
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.currentTarget).entries());
     const parsed = contactSchema.safeParse(data);
@@ -52,17 +51,23 @@ function ContactPage() {
       return;
     }
     setErrors({});
+    setLoading(true);
 
-    const { name, email, phone, message } = parsed.data;
-    const subject = encodeURIComponent(`Rio Adobe Contact: Message from ${name}`);
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\nPhone: ${phone || "Not provided"}\n\nMessage:\n${message}`
-    );
-    const mailtoUrl = `mailto:${OWNER_EMAIL}?subject=${subject}&body=${body}`;
-
-    window.open(mailtoUrl, "_blank");
-    setSubmitted(true);
-    toast.success("Your email client has been opened. Please send the message!");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(parsed.data),
+      });
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error || "Unknown error");
+      setSubmitted(true);
+      toast.success("Message sent! We'll be in touch soon.");
+    } catch (err: any) {
+      toast.error(err.message || "Could not send message. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -75,7 +80,6 @@ function ContactPage() {
           </div>
           <span className="text-[10px] tracking-[0.5em] uppercase text-primary font-bold">Get in Touch</span>
           <h1 className="mt-4 font-anton text-6xl md:text-8xl uppercase tracking-tight text-on-surface">Contact Us</h1>
-
           <p className="mt-6 text-lg text-on-surface-variant max-w-2xl mx-auto">
             Drop in, give us a ring, or send a message — we'd love to hear from you.
           </p>
@@ -94,19 +98,19 @@ function ContactPage() {
           <InfoBlock icon={<Phone />} label="Call" primary="(408) 873-1600" secondary="For takeout & general inquiries" cta={{ href: "tel:4088731600", label: "Call Now" }} />
           <InfoBlock icon={<Printer />} label="Fax" primary="(408) 873-1614" secondary="For resumes & inquiries" />
           <InfoBlock icon={<Clock />} label="Hours" primary="Daily 11:00 AM – 9:00 PM" secondary="Open 7 days a week" />
-          <InfoBlock icon={<Mail />} label="Email" primary={OWNER_EMAIL} secondary="We typically reply within one business day." />
+          <InfoBlock icon={<Mail />} label="Message" primary="Send us a message" secondary="We typically respond within one business day." />
         </div>
 
         <div className="bg-card border border-border rounded-3xl p-8 md:p-10 shadow-xl h-fit md:sticky md:top-28">
           <h2 className="font-anton text-3xl uppercase tracking-tight text-on-surface">Send a message</h2>
-          <p className="text-sm text-on-surface-variant mt-2">We'll open your email app with everything filled in — just hit send!</p>
+          <p className="text-sm text-on-surface-variant mt-2">We typically respond within one business day.</p>
 
           {submitted ? (
             <div className="mt-10 p-6 rounded-2xl bg-emerald-50 border border-emerald-100 text-emerald-800 flex gap-3">
               <CheckCircle2 className="shrink-0 mt-0.5" />
               <div>
-                <p className="font-bold">¡Gracias! Your email client has been opened.</p>
-                <p className="text-sm mt-1">Just hit "Send" in your email app and we'll be in touch soon.</p>
+                <p className="font-bold">¡Gracias! Your message has been sent.</p>
+                <p className="text-sm mt-1">We'll be in touch soon.</p>
                 <button
                   className="mt-3 text-xs font-bold uppercase tracking-widest text-emerald-700 hover:underline"
                   onClick={() => setSubmitted(false)}
@@ -136,9 +140,11 @@ function ContactPage() {
               </div>
               <button
                 type="submit"
-                className="w-full bg-primary text-on-primary rounded-full py-4 text-xs font-bold uppercase tracking-[0.25em] hover:opacity-90 transition flex items-center justify-center gap-2"
+                disabled={loading}
+                className="w-full bg-primary text-on-primary rounded-full py-4 text-xs font-bold uppercase tracking-[0.25em] hover:opacity-90 transition flex items-center justify-center gap-2 disabled:opacity-60"
               >
-                <Send size={14} /> Open Email & Send
+                {loading ? <Loader2 size={14} className="animate-spin" /> : <Send size={14} />}
+                {loading ? "Sending…" : "Send Message"}
               </button>
               <p className="text-[10px] text-on-surface-variant text-center mt-2">
                 Your information stays private. We never share or sell guest details.
