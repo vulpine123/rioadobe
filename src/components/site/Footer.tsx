@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { MapPin, Phone, Clock, Instagram, Facebook } from "lucide-react";
 import { RioAdobeMark } from "./Brand";
+import { NewsletterForm } from "./NewsletterForm";
 
 export function Footer() {
   return (
