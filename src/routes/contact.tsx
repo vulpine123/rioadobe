@@ -35,9 +35,10 @@ type ContactErrors = Partial<Record<keyof z.infer<typeof contactSchema>, string>
 
 function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<ContactErrors>({});
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.currentTarget).entries());
     const parsed = contactSchema.safeParse(data);
@@ -51,6 +52,18 @@ function ContactPage() {
       return;
     }
     setErrors({});
+    setLoading(true);
+    const { error } = await supabase.from("contact_messages").insert({
+      name: parsed.data.name,
+      email: parsed.data.email,
+      phone: parsed.data.phone || null,
+      message: parsed.data.message,
+    });
+    setLoading(false);
+    if (error) {
+      toast.error("Could not send message. Please try again.");
+      return;
+    }
     setSubmitted(true);
   };
 
