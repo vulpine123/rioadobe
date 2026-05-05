@@ -3,6 +3,8 @@ import { useState } from "react";
 import { z } from "zod";
 import { MapPin, Phone, Printer, Clock, Mail, Send, CheckCircle2 } from "lucide-react";
 import { RioAdobeMark } from "@/components/site/Brand";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
