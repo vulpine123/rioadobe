@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { motion } from 'motion/react';
 import { CheckCircle2, ChevronRight } from 'lucide-react';
 import { RioAdobeMark } from '@/components/site/Brand';
+import { supabase } from '@/integrations/supabase/client';
+import { toast } from 'sonner';
 
 
 const ratings = ['Excellent', 'Good', 'Average', 'Poor'];
