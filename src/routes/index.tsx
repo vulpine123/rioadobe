@@ -2,13 +2,14 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { Star, MapPin, Clock, Phone, ChevronRight, Utensils, Flame, Leaf, Award, Heart, Sparkles } from "lucide-react";
-const heroImg = "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&q=80&w=1920";
-const tacosImg = "https://rioadobe.com/Pueblo_Nachos.jpg";
-const enchiladaImg = "https://rioadobe.com/Adobe_Chicken_Burrito.jpg";
-const salsaImg = "https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&q=80&w=1200";
+const heroImg = "https://rioadobe.com/files/QuickSiteImages/QS_header.jpg";
+const tacosImg = "https://rioadobe.com/publishImages/Appetizers~~element21.jpg";
+const enchiladaImg = "https://rioadobe.com/IMG_1968.JPG";
+const salsaImg = "https://rioadobe.com/publishImages/Appetizers~~element26.jpg";
 const margaritaImg = "https://images.unsplash.com/photo-1559113513-d5e09c78b9dd?auto=format&fit=crop&q=80&w=1200";
 const chefImg = "https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?auto=format&fit=crop&q=80&w=1200";
-const spicesImg = "https://images.unsplash.com/photo-1506368249639-73a05d6f6488?auto=format&fit=crop&q=80&w=1920";
+const spicesImg = "https://rioadobe.com/files/QuickSiteImages/QS_header.jpg";
+
 
 import { AsciiBanner } from "@/components/site/AsciiArt";
 import { RioAdobeMark } from "@/components/site/Brand";

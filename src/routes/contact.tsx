@@ -77,7 +77,7 @@ function ContactPage() {
           <InfoBlock icon={<Phone />} label="Call" primary="(408) 873-1600" secondary="For takeout & general inquiries" cta={{ href: "tel:4088731600", label: "Call Now" }} />
           <InfoBlock icon={<Printer />} label="Fax" primary="(408) 873-1614" secondary="For resumes & inquiries" />
           <InfoBlock icon={<Clock />} label="Hours" primary="Daily 11:00 AM – 9:00 PM" secondary="Open 7 days a week" />
-          <InfoBlock icon={<Mail />} label="Feedback" primary="Eaten with us?" secondary="Tell us what you thought." cta={{ href: "https://www.rioadobe.com/WebSurvey.html", label: "Take the Survey" }} />
+          <InfoBlock icon={<Mail />} label="Feedback" primary="Eaten with us?" secondary="Tell us what you thought." cta={{ href: "/survey", label: "Take the Survey" }} />
         </div>
 
         <div className="bg-card border border-border rounded-3xl p-8 md:p-10 shadow-xl h-fit md:sticky md:top-28">

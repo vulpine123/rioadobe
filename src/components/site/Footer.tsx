@@ -10,10 +10,11 @@ export function Footer() {
           <div>
             <Link to="/" className="flex items-center gap-3 mb-2 group">
               <img 
-                src="https://rioadobe.com/~site/Scripts_ElementBanner/ElementBanner.dll?BANNERID=1&SITEID=RTK3&VER=1" 
-                alt="Rio Adobe" 
-                className="h-10 w-auto object-contain transition-transform group-hover:scale-105"
-              />
+              src="https://rioadobe.com/RA-Red.gif" 
+              alt="Rio Adobe" 
+              className="h-10 w-auto object-contain transition-transform group-hover:scale-105"
+            />
+
             </Link>
             <p className="text-[10px] tracking-[0.4em] uppercase opacity-60 mt-1">Southwest Cafe · Est. 2007</p>
 

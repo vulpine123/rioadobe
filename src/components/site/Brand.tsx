@@ -1,13 +1,14 @@
 export function RioAdobeMark({ className = "", size = 40 }: { className?: string; size?: number }) {
   return (
     <img 
-      src="https://rioadobe.com/~site/Scripts_ElementBanner/ElementBanner.dll?BANNERID=1&SITEID=RTK3&VER=1" 
+      src="https://rioadobe.com/RA-Red.gif" 
       alt="Rio Adobe" 
       className={`object-contain ${className}`}
       style={{ width: size, height: 'auto' }}
     />
   );
 }
+
 
 
 export function RioAdobeWordmark({ className = "" }: { className?: string }) {
