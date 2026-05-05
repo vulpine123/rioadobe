@@ -56,9 +56,13 @@ function ContactPage() {
     <div className="bg-surface">
       <section className="py-20 md:py-28 px-6">
         <div className="max-w-6xl mx-auto text-center">
-          <RioAdobeMark size={56} className="text-primary mx-auto mb-6" />
+          <div className="flex flex-col items-center gap-2 mb-6">
+            <RioAdobeMark size={64} />
+            <span className="font-anton text-3xl uppercase tracking-tight text-primary">Rio Adobe</span>
+          </div>
           <span className="text-[10px] tracking-[0.5em] uppercase text-primary font-bold">Get in Touch</span>
           <h1 className="mt-4 font-anton text-6xl md:text-8xl uppercase tracking-tight text-on-surface">Contact Us</h1>
+
           <p className="mt-6 text-lg text-on-surface-variant max-w-2xl mx-auto">
             Drop in, give us a ring, or send a message — we'd love to hear from you.
           </p>

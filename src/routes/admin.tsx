@@ -2,6 +2,8 @@ import { createFileRoute } from '@tanstack/react-router';
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Lock, LogOut, MessageSquare, Calendar, Mail, User, Star } from 'lucide-react';
+import { RioAdobeMark } from '@/components/site/Brand';
+
 
 export const Route = createFileRoute('/admin')({
   component: AdminPage,
@@ -100,10 +102,12 @@ function AdminPage() {
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 bg-surface">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-6">
-          <div>
+          <div className="flex flex-col items-start gap-2">
+            <RioAdobeMark size={48} />
             <h1 className="text-4xl font-black text-gray-900 uppercase font-headline">Dashboard</h1>
-            <p className="text-on-surface-variant mt-2 font-medium">Manage your restaurant data</p>
+            <p className="text-on-surface-variant mt-1 font-medium">Manage your restaurant data</p>
           </div>
+
           <div className="flex items-center gap-4">
             <button 
               onClick={() => setIsAuthenticated(false)}

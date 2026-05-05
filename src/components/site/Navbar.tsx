@@ -33,12 +33,13 @@ export function Navbar() {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-10">
         <Link to="/" className="flex items-center gap-2.5 group">
-          <img 
-            src="https://rioadobe.com/~site/Scripts_ElementBanner/ElementBanner.dll?BANNERID=1&SITEID=RTK3&VER=1" 
-            alt="Rio Adobe" 
-            className="h-12 md:h-16 w-auto object-contain transition-transform group-hover:scale-105"
-          />
+          <RioAdobeMark size={60} className="transition-transform group-hover:scale-105" />
+          <span className="flex flex-col leading-none">
+            <span className="font-anton text-2xl uppercase tracking-tight text-primary">Rio Adobe</span>
+            <span className="text-[9px] tracking-[0.4em] uppercase text-on-surface-variant mt-1 hidden sm:block">Southwest Cafe</span>
+          </span>
         </Link>
+
 
 
         <nav className="hidden md:flex items-center gap-10">

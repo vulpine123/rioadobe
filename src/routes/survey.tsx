@@ -2,6 +2,8 @@ import { createFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { CheckCircle2, ChevronRight } from 'lucide-react';
+import { RioAdobeMark } from '@/components/site/Brand';
+
 
 const ratings = ['Excellent', 'Good', 'Average', 'Poor'];
 
@@ -78,6 +80,13 @@ function SurveyPage() {
     <div className="py-24 px-4 sm:px-6 lg:px-8 bg-surface">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="flex justify-center mb-6"
+          >
+            <RioAdobeMark size={64} />
+          </motion.div>
           <motion.span 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -85,6 +94,7 @@ function SurveyPage() {
           >
             Tell us about your visit
           </motion.span>
+
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

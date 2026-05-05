@@ -2,13 +2,14 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { Star, MapPin, Clock, Phone, ChevronRight, Utensils, Flame, Leaf, Award, Heart, Sparkles } from "lucide-react";
-const heroImg = "https://rioadobe.com/files/QuickSiteImages/QS_header.jpg";
+const heroImg = "https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&q=80&w=2000";
 const tacosImg = "https://rioadobe.com/publishImages/Appetizers~~element21.jpg";
 const enchiladaImg = "https://rioadobe.com/IMG_1968.JPG";
 const salsaImg = "https://rioadobe.com/publishImages/Appetizers~~element26.jpg";
-const margaritaImg = "https://images.unsplash.com/photo-1559113513-d5e09c78b9dd?auto=format&fit=crop&q=80&w=1200";
-const chefImg = "https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?auto=format&fit=crop&q=80&w=1200";
-const spicesImg = "https://rioadobe.com/files/QuickSiteImages/QS_header.jpg";
+const margaritaImg = "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=1200";
+const chefImg = "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&q=80&w=1200";
+const spicesImg = "https://images.unsplash.com/photo-1506368249639-73a05d6f6488?auto=format&fit=crop&q=80&w=2000";
+
 
 
 import { AsciiBanner } from "@/components/site/AsciiArt";
@@ -75,13 +76,14 @@ function HomePage() {
             transition={{ duration: 0.8 }}
             className="max-w-3xl text-white"
           >
-            <div className="flex items-center gap-3 mb-6">
-              <RioAdobeMark size={56} className="text-accent" />
+            <div className="flex items-center gap-4 mb-6">
+              <RioAdobeMark size={64} />
               <div>
-                <p className="font-anton text-2xl uppercase tracking-tight">Rio Adobe</p>
-                <p className="text-[9px] tracking-[0.4em] uppercase opacity-70">Southwest Cafe · Est. 2007</p>
+                <p className="font-anton text-3xl uppercase tracking-tight text-white">Rio Adobe</p>
+                <p className="text-[10px] tracking-[0.4em] uppercase opacity-70 text-accent font-bold">Southwest Cafe · Est. 2007</p>
               </div>
             </div>
+
 
             <h1 className="font-anton text-6xl md:text-8xl lg:text-9xl uppercase leading-[0.92] tracking-tight text-balance">
               Southwest Soul.<br />
