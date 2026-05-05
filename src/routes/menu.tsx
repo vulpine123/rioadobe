@@ -3,8 +3,10 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { MENU, type DietaryTag } from "@/data/menu";
 import { Leaf, WheatOff, Flame, Star, X, Download, Phone } from "lucide-react";
-import tacosImg from "@/assets/tacos-flatlay.jpg";
-import salsaImg from "@/assets/salsa-bar.jpg";
+const heroImg = "https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?auto=format&fit=crop&q=80&w=1920";
+const tacosImg = "https://rioadobe.com/publishImages/Appetizers~~element21.jpg";
+const salsaImg = "https://rioadobe.com/publishImages/Appetizers~~element26.jpg";
+
 import { RioAdobeMark } from "@/components/site/Brand";
 
 export const Route = createFileRoute("/menu")({
@@ -40,7 +42,8 @@ function MenuPage() {
     <div className="bg-surface">
       {/* Hero */}
       <section className="relative bg-[#1A1614] text-white py-24 md:py-32 px-6 overflow-hidden">
-        <img src={tacosImg} alt="" loading="lazy" className="absolute inset-0 w-full h-full object-cover opacity-25" />
+        <img src={heroImg} alt="" loading="lazy" className="absolute inset-0 w-full h-full object-cover opacity-25" />
+
         <div className="absolute inset-0 bg-gradient-to-b from-[#1A1614]/70 via-[#1A1614]/85 to-[#1A1614]" />
         <div className="relative max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
           <div>
